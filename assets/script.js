@@ -28,34 +28,46 @@ const numbSlide = slides.length;
 //Click gauche
 arrowLeft.addEventListener("click", function() {
 	slidePosition --;
+	if (slidePosition < 0) {
+		slidePosition = numbSlide -1;
+	}
 	image.src = slides[slidePosition].image;
 	text.innerHTML = slides[slidePosition].tagLine;
 	console.log("gauche");
+	selectedDot();
 })
 	
 //Click droit
 arrowRight.addEventListener("click", function() {
 	slidePosition ++;
+	if (slidePosition === numbSlide) {
+		slidePosition = 0;
+	}
 	image.src = slides[slidePosition].image;
 	text.innerHTML = slides[slidePosition].tagLine;
 	console.log("droite");
+	selectedDot();
+	
 })
 
-// Creation des dots
+// Création des dots
 for (i=0 ; i < numbSlide ; i++) {
-	let dot = document.createElement("div");
+	const dot = document.createElement("div");
 	dot.classList.add("dot");
-	dots.appendChild(dot);	
+	dots.appendChild(dot);
 	if (i === slidePosition) {
 		dot.classList.add("dot_selected");
 	}
 }
 
-//function dotChange() {
-//	if (i === slidePosition) {
-//			dot.classList.add("dot_selected");
-//		} else {
-//			dot.classList.remove("dot_selected");
-//		}
-//		console.log("ca marche!");
-//}
+// Fonction pour afficher la dot selectionnée
+function selectedDot() {
+	const allDots = document.querySelectorAll(".dot");
+	allDots.forEach((dot, i)=>{
+		if(i === slidePosition){
+			dot.classList.add("dot_selected");	
+		}else{
+			dot.classList.remove("dot_selected");
+		}
+	})
+}
