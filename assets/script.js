@@ -1,6 +1,16 @@
 // Les variables //
-const arrowLeft = document.querySelector(".arrow_left");
-const arrowRight = document.querySelector(".arrow_right");
+const banner = document.getElementById("banner");
+
+const arrowLeft = document.createElement("img");
+arrowLeft.classList.add("arrow", "arrow_left");
+arrowLeft.src = "../assets/images/arrow_left.png";
+banner.appendChild(arrowLeft);
+
+const arrowRight = document.createElement("img");
+arrowRight.classList.add("arrow", "arrow_right");
+arrowRight.src = "../assets/images/arrow_right.png";
+banner.appendChild(arrowRight);
+
 const image = document.querySelector(".banner-img");
 const text = document.querySelector(".banner-text");
 const dots = document.querySelector(".dots");
