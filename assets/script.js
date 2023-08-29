@@ -13,9 +13,6 @@ arrowRight.src = "../assets/images/arrow_right.png";
 arrowRight.alt = "flèche pour cliquer à droite";
 banner.appendChild(arrowRight);
 
-const image = document.querySelector(".banner-img");
-const text = document.querySelector(".banner-text");
-const dots = document.querySelector(".dots");
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -34,6 +31,7 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
 let slidePosition = 0 ;
 const numbSlide = slides.length;
 
@@ -43,10 +41,7 @@ arrowLeft.addEventListener("click", function() {
 	if (slidePosition < 0) {
 		slidePosition = numbSlide -1;
 	}
-	image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
-	text.innerHTML = slides[slidePosition].tagLine;
-	console.log("gauche");
-	selectedDot();
+	slideChanges();
 })
 	
 //Click droit
@@ -55,21 +50,27 @@ arrowRight.addEventListener("click", function() {
 	if (slidePosition === numbSlide) {
 		slidePosition = 0;
 	}
-	image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
-	text.innerHTML = slides[slidePosition].tagLine;
-	console.log("droite");
-	selectedDot();
-	
+	slideChanges();
 })
 
 // Création des dots
 for (i=0 ; i < numbSlide ; i++) {
+	const dots = document.querySelector(".dots");
 	const dot = document.createElement("div");
 	dot.classList.add("dot");
 	dots.appendChild(dot);
 	if (i === slidePosition) {
 		dot.classList.add("dot_selected");
 	}
+}
+
+// Fonction pour selection image, texte et dot selon position slide
+function slideChanges() {
+	const image = document.querySelector(".banner-img");
+	const text = document.querySelector(".banner-text");
+	image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
+	text.innerHTML = slides[slidePosition].tagLine;
+	selectedDot();
 }
 
 // Fonction pour afficher la dot selectionnée
