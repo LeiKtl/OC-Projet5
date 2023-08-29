@@ -4,11 +4,13 @@ const banner = document.getElementById("banner");
 const arrowLeft = document.createElement("img");
 arrowLeft.classList.add("arrow", "arrow_left");
 arrowLeft.src = "../assets/images/arrow_left.png";
+arrowLeft.alt = "flèche pour cliquer à gauche";
 banner.appendChild(arrowLeft);
 
 const arrowRight = document.createElement("img");
 arrowRight.classList.add("arrow", "arrow_right");
 arrowRight.src = "../assets/images/arrow_right.png";
+arrowRight.alt = "flèche pour cliquer à droite";
 banner.appendChild(arrowRight);
 
 const image = document.querySelector(".banner-img");
@@ -16,19 +18,19 @@ const text = document.querySelector(".banner-text");
 const dots = document.querySelector(".dots");
 const slides = [
 	{
-		"image":"./assets/images/slideshow/slide1.jpg",
+		"image":"slide1.jpg",
 		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
-		"image":"./assets/images/slideshow/slide2.jpg",
+		"image":"slide2.jpg",
 		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	},
 	{
-		"image":"./assets/images/slideshow/slide3.jpg",
+		"image":"slide3.jpg",
 		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
 	},
 	{
-		"image":"./assets/images/slideshow/slide4.png",
+		"image":"slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
@@ -41,7 +43,7 @@ arrowLeft.addEventListener("click", function() {
 	if (slidePosition < 0) {
 		slidePosition = numbSlide -1;
 	}
-	image.src = slides[slidePosition].image;
+	image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
 	text.innerHTML = slides[slidePosition].tagLine;
 	console.log("gauche");
 	selectedDot();
@@ -53,7 +55,7 @@ arrowRight.addEventListener("click", function() {
 	if (slidePosition === numbSlide) {
 		slidePosition = 0;
 	}
-	image.src = slides[slidePosition].image;
+	image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
 	text.innerHTML = slides[slidePosition].tagLine;
 	console.log("droite");
 	selectedDot();
