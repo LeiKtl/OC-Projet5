@@ -67,7 +67,7 @@ for (i=0 ; i < numbSlide ; i++) {
 // Fonction pour selection image, texte et dot selon position slide
 function slideChanges() {
 	const image = document.querySelector(".banner-img");
-	const text = document.querySelector(".banner-text");
+	const text = document.querySelector("#banner p");
 	image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
 	text.innerHTML = slides[slidePosition].tagLine;
 	selectedDot();
