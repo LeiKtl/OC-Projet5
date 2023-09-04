@@ -1,13 +1,17 @@
+let slidePosition = 0 ;
+
 function slider() {
 	// Les variables //
 	const banner = document.getElementById("banner");
 
+	//Ajout de l'image flèche gauche
 	const arrowLeft = document.createElement("img");
 	arrowLeft.classList.add("arrow", "arrow_left");
 	arrowLeft.src = "../assets/images/arrow_left.png";
 	arrowLeft.alt = "flèche pour cliquer à gauche";
 	banner.appendChild(arrowLeft);
 
+	//Ajout de l'image flèche droite
 	const arrowRight = document.createElement("img");
 	arrowRight.classList.add("arrow", "arrow_right");
 	arrowRight.src = "../assets/images/arrow_right.png";
@@ -33,7 +37,6 @@ function slider() {
 		}
 	]
 
-	let slidePosition = 0 ;
 	const numbSlide = slides.length;
 
 	//Click gauche
@@ -42,7 +45,7 @@ function slider() {
 		if (slidePosition < 0) {
 			slidePosition = numbSlide -1;
 		}
-		slideChanges();
+		slideChanges(slides);
 	})
 		
 	//Click droit
@@ -51,7 +54,7 @@ function slider() {
 		if (slidePosition === numbSlide) {
 			slidePosition = 0;
 		}
-		slideChanges();
+		slideChanges(slides);
 	})
 
 	// Création des dots
@@ -64,27 +67,27 @@ function slider() {
 			dot.classList.add("dot_selected");
 		}
 	}
+}
 
-	// Fonction pour selection image, texte et dot selon position slide
-	function slideChanges() {
-		const image = document.querySelector(".banner-img");
-		const text = document.querySelector("#banner p");
-		image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
-		text.innerHTML = slides[slidePosition].tagLine;
-		selectedDot();
-	}
+// Fonction pour afficher la dot selectionnée
+function selectedDot() {
+	const allDots = document.querySelectorAll(".dot");
+	allDots.forEach((dot, i)=>{
+		if(i === slidePosition){
+			dot.classList.add("dot_selected");	
+		}else{
+			dot.classList.remove("dot_selected");
+		}
+	})
+}
 
-	// Fonction pour afficher la dot selectionnée
-	function selectedDot() {
-		const allDots = document.querySelectorAll(".dot");
-		allDots.forEach((dot, i)=>{
-			if(i === slidePosition){
-				dot.classList.add("dot_selected");	
-			}else{
-				dot.classList.remove("dot_selected");
-			}
-		})
-	}
+// Fonction pour selection image, texte et dot selon position slide
+function slideChanges(slides) {
+	const image = document.querySelector(".banner-img");
+	const text = document.querySelector("#banner p");
+	image.src = `./assets/images/slideshow/${slides[slidePosition].image}`;
+	text.innerHTML = slides[slidePosition].tagLine;
+	selectedDot();
 }
 
 slider();
